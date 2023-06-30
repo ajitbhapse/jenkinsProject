@@ -15,7 +15,8 @@ pipeline {
                 bat "./test.bat"
         script{
                        exampleModule = load "./firstGroovy.Groovy"
-                       exampleModule.exampleMethod()
+                       def value = exampleModule.exampleMethod()
+                       echo "${value[0]}"
                        exampleModule.otherExampleMethod()
             }       
         }
