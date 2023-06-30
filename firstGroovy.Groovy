@@ -1,12 +1,12 @@
 def exampleMethod() {
     node {
-        //do something
+        println("calling from the groovy script")
     }
 }
 
 def otherExampleMethod() {
     node {
-        //do something else
+          println("calling from the groovy script")
     }
 }
 return this
