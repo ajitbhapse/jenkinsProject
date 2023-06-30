@@ -1,12 +1,8 @@
 def exampleMethod() {
-    node {
-        println("calling from the groovy script")
-    }
+        return ["12","13","14"]
 }
 
 def otherExampleMethod() {
-    node {
-          println("calling from the groovy script")
-    }
+          println("this is the end of the file")
 }
 return this
