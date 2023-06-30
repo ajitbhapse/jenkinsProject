@@ -14,7 +14,7 @@ pipeline {
                 echo "./gradlew build"
                 bat "./test.bat"
         script{
-                       exampleModule = load "./Example.Groovy"
+                       exampleModule = load "./firstGroovy.Groovy"
                        exampleModule.exampleMethod()
                        exampleModule.otherExampleMethod()
             }       
