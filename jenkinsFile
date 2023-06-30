@@ -13,11 +13,13 @@ pipeline {
             steps {
                 echo "./gradlew build"
                 bat "./test.bat"
-               exampleModule = load "./Example.Groovy"
-               exampleModule.exampleMethod()
-               exampleModule.otherExampleMethod()
-            }
+        script{
+                       exampleModule = load "./Example.Groovy"
+                       exampleModule.exampleMethod()
+                       exampleModule.otherExampleMethod()
+            }       
         }
+    }
         
         stage("Publish") {
             parallel {
