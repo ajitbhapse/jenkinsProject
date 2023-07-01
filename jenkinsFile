@@ -12,9 +12,9 @@ pipeline {
         stage("Build") {
             steps {
                 echo "./gradlew build"
-                bat "./test.bat"
+                bat "./src/main/resources/test.bat"
         script{
-                       exampleModule = load "./groovy/firstGroovy.Groovy"
+                       exampleModule = load "./src/main/groovy/firstGroovy.Groovy"
                        def value = exampleModule.exampleMethod()
                        echo "${value[0]}"
                        exampleModule.otherExampleMethod()
