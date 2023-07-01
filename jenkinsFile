@@ -49,10 +49,10 @@ pipeline {
             steps {
                 script {
                     switch(params.DEPLOY_TO) {
-                        case "INT": echo "./deploy.sh int"; break
-                        case "QA": echo "./deploy.sh int"; break
-                        case "PRE": echo "./deploy.sh pre"; break
-                        case "PROD": echo "./deploy.sh prod"; break
+                        case "INT": echo "./deploy.sh INT"; break
+                        case "QA": echo "./deploy.sh QA"; break
+                        case "PRE": echo "./deploy.sh PRE"; break
+                        case "PROD": echo "./deploy.sh PROD"; break
                     }
                 }
             }
