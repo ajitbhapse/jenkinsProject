@@ -1,0 +1,60 @@
+pipeline {
+
+    agent any
+
+    parameters {
+        booleanParam(name: "RELEASE", defaultValue: false)
+        choice(name: "DEPLOY_TO", choices: ["QA", "INT", "PRE", "PROD"])
+    }
+
+    stages {
+
+        stage("Build") {
+            steps {
+                echo "./gradlew build"
+                bat "./test.bat"
+        script{
+                       exampleModule = load "./groovy/firstGroovy.Groovy"
+                       def value = exampleModule.exampleMethod()
+                       echo "${value[0]}"
+                       exampleModule.otherExampleMethod()
+            }
+        }
+    }
+
+        stage("Publish") {
+            parallel {
+                stage('Pre-Release') {
+                    when { expression { !params.RELEASE } }
+                    steps {
+                        echo "./gradlew preRelease"
+                    }
+                }
+                stage("QA") {
+                    when { expression { params.RELEASE } }
+                    steps {
+                        echo "./gradlew release"
+                    }
+                }
+                 stage("DEV") {
+                    when { expression { params.RELEASE } }
+                    steps {
+                        echo "./gradlew release"
+                    }
+                }
+            }
+        }
+
+        stage("Deploy") {
+            steps {
+                script {
+                    switch(params.DEPLOY_TO) {
+                        case "INT": echo "./deploy.sh int"; break
+                        case "PRE": echo "./deploy.sh pre"; break
+                        case "PROD": echo "./deploy.sh prod"; break
+                    }
+                }
+            }
+        }
+    }
+}
