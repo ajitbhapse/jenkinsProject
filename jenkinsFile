@@ -33,13 +33,13 @@ pipeline {
                 stage("QA") {
                     when { expression { params.RELEASE } }
                     steps {
-                        echo "./gradlew release"
+                        echo "./gradlew QA"
                     }
                 }
                  stage("DEV") {
                     when { expression { params.RELEASE } }
                     steps {
-                        echo "./gradlew release"
+                        echo "./gradlew DEV"
                     }
                 }
             }
